@@ -8,7 +8,8 @@ import (
 )
 
 func main() {
-	player := models.NewPlayer(ui.GetName(), config.StartBalance)
+	name := ui.GetName()
+	player := models.NewPlayer(name, config.StartBalance)
 	slot := models.NewSlotMachine(config.Rows, config.Cols, config.Symbols, config.Multipliers)
 	svc := service.NewGameService(slot)
 	ui.PlayGame(svc, player)
