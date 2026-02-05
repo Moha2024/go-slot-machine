@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func PlayGame(svc service.GameService, player *models.Player) {
+func PlayGame(svc *service.GameService, player *models.Player) {
 	Loop: for {
 		command := getCommand()
 		balance := player.GetBalance()
