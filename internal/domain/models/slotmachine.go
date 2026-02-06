@@ -1,21 +1,21 @@
 package models
 
-import "slotmachine/internal/pkg/rng"
-
 type SlotMachine struct {
 	symbols     map[string]uint
 	multipliers map[string]uint
 	rows        int
 	cols        int
+	generator NumberGenerator
 	reel []string
 }
 
-func NewSlotMachine(rows int, cols int, symbols map[string]uint, multipliers map[string]uint) SlotMachine {
+func NewSlotMachine(rows int, cols int, symbols map[string]uint, multipliers map[string]uint, gen NumberGenerator) SlotMachine {
 	return SlotMachine{
 		symbols:     symbols,
 		multipliers: multipliers,
 		rows:        rows,
 		cols:        cols,
+		generator: gen,
 		reel: GenerateReel(symbols),
 	}
 }
@@ -47,7 +47,7 @@ func (s *SlotMachine) GetSpinResult(reel []string) [][]string {
 		selected := map[int]bool{}
 		for row := 0; row < s.rows; row++ {
 			for true {
-				randomIndex := rng.GetRandomNumber(0, len(reel)-1)
+				randomIndex := s.generator.NumberGenerator(0, len(reel)-1)
 				_, exists := selected[randomIndex]
 				if !exists {
 					selected[randomIndex] = true

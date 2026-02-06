@@ -49,7 +49,7 @@ func printWinLose(profit uint, bet uint) {
 	if profit == 0 {
 		fmt.Printf("You lost $%d\n", bet)
 	} else {
-		fmt.Printf("You won $%d\n", profit)
+		fmt.Printf("You won $%d\n", profit-bet)
 	}
 }
 
