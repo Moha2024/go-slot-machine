@@ -18,12 +18,12 @@ func RestartGame(player *models.Player) {
 	player.SetBalance(config.StartBalance)
 }
 
-func QuitGame(player *models.Player) (profit uint, flag bool){
+func QuitGame(player *models.Player, startBalance uint) (profit uint, flag bool) {
 	balance := player.GetBalance()
-	if balance >= config.StartBalance{
-		return balance - config.StartBalance, true
+	if balance >= startBalance {
+		return balance - startBalance, true
 	} else {
-		return config.StartBalance - balance, false
+		return startBalance - balance, false
 	}
 }
 
@@ -36,4 +36,3 @@ func ValidateBet(command string, balance uint) uint {
 	}
 	return uint(bet)
 }
-
